@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st # type: ignore
 from functions.add_media import add_media
 
 st.set_page_config(layout="wide", page_title="Movies and Shows Manager", page_icon="🎬")
