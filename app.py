@@ -12,7 +12,11 @@ with movies:
 
     add_media("Movie")
 
+    st.divider()
+
 with shows:
     st.header("Shows")
 
     add_media("Show")
+
+    st.divider()
