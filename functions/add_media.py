@@ -1,10 +1,14 @@
 import streamlit as st # type: ignore
 from datetime import datetime
+from db.database import insert_media
 
 def add_media(media_type):
 
     @st.dialog(f"Add {media_type}")
     def add(media_type):
+
+        date = None
+        rating = None
 
         media_title = st.text_input(f"{media_type} Title")
 
@@ -12,26 +16,23 @@ def add_media(media_type):
         curr_year = datetime.now().year
 
         years = list(range(curr_year, start_year - 1, -1))
-        year = st.selectbox("Year", years, index = 0)
-
-        genres = ["Action", "Comedy", "Drama", "Horror", "Sci-Fi", "Fantasy", "Thriller", "Documentary", "Romance"]
-        media_genre = st.multiselect("Genre", genres)
+        media_year = st.selectbox("Year", years, index = 0)
 
         if media_type == "Movie":
             status_map = {
-                0: "To Watch",
-                1: "Watched",
+                "To Watch",
+                "Watched",
             }
         if media_type == "Show":
             status_map = {
-                0: "To Watch",
-                1: "Watched",
-                2: "Watching",
+                "To Watch",
+                "Watched",
+                "Watching",
             }
 
-        status = st.pills("Status", options = status_map, format_func = lambda option: status_map[option], selection_mode = "single")
+        media_status = st.pills("Status", options = status_map, selection_mode = "single")
 
-        if status == 1:
+        if media_status == "Watched":
             date = st.date_input("Date Watched", format = "DD/MM/YYYY")
 
             st.write("Rating")
@@ -39,10 +40,11 @@ def add_media(media_type):
 
         if st.button("Submit"):
 
+            insert_media(media_title, media_year, media_status, date, rating)
+
             st.rerun()
 
+
     if st.button(f"Add {media_type}"):
-
-        #database magic
-
         add(media_type)
+        
