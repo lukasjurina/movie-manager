@@ -8,7 +8,7 @@ db_init()
 st.set_page_config(layout="wide", page_title="Movies and Shows Manager", page_icon="🎬")
 
 if "message" in st.session_state:
-    msg, msg_type = st.session_state.pop("message")  # Po zobrazení smažeme
+    msg, msg_type = st.session_state.pop("message")
     if msg_type == "success":
         st.success(msg)
     elif msg_type == "warning":

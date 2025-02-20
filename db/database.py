@@ -37,9 +37,9 @@ def insert_media(title, year, status, date_watched, rating):
         
         conn.commit()
 
-        st.session_state["message"] = ("✅ Film Added!", "success")
+        st.session_state["message"] = ("Media Added!", "success")
     except sqlite3.IntegrityError:
-        st.session_state["message"] = (f"Movie already exists or missing information!", "warning")
+        st.session_state["message"] = (f"Media already exists or missing information!", "warning")
     except Exception as e:
         st.session_state["message"] = (f"Error: {e}", "error")
     finally:
