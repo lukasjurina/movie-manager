@@ -22,4 +22,42 @@ def order_media(parent_key):
 
 def list_media(parent_key, status, order):
     result = get_media(parent_key, status, order)
-    st.write(result)
+
+    #st.write(result)
+
+    #pass
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    #0: id, 1: title, 2: year, 3: status, 4: date_watched, 5: rating
+
+    for i, record in enumerate(result):
+        with [col1, col2, col3, col4][i % 4]:
+            with st.container(border = True, height = 320):
+                st.markdown(f"<h3 style='white-space: nowrap; overflow: hidden; max-width: 100%; display: inline-block; animation: scroll-text 10s linear infinite;'>{record[1]}</h3>", unsafe_allow_html=True)
+
+                st.write(f"{record[2]}")
+                st.write(f"{record[3]}")
+                if record[4]:
+                    st.write(f"{record[4]}")
+                else:
+                    st.markdown("<div style='height: 41.6px;'></div>", unsafe_allow_html=True)
+                if record[5]:
+                    rating = "⭐" * (record[5] + 1)
+                    st.write(f"{rating}")
+                else:
+                    st.markdown("<div style='height: 41.6px;'></div>", unsafe_allow_html=True)
+
+                with st.expander(f"Options"):
+                    col_edit, col_delete = st.columns([1, 1])
+
+                    # Tlačítka pro úpravu a smazání
+                    with col_edit:
+                        if st.button("Edit", key=f"edit_{parent_key}{i}"):
+                            # Kód pro úpravu záznamu
+                            pass
+
+                    with col_delete:
+                        if st.button("Delete", key=f"delete_{parent_key}{i}"):
+                            # Kód pro smazání záznamu
+                            pass
