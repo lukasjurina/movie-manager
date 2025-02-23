@@ -19,14 +19,14 @@ def db_init():
                 status text not null,
                 date_watched text,
                 rating integer,
-                type tet,
+                type text,
                 unique(title, year)
             )              
         """)
 
         conn.commit()
     except Exception as e:
-        st.session_state["message"] = (f"Error: {e}", "error")
+        st.session_state["message"] = (f"Database error: {e}", "error")
     finally:
         conn.close()
 
@@ -45,28 +45,30 @@ def insert_media(title, year, status, date_watched, rating, type):
     except sqlite3.IntegrityError:
         st.session_state["message"] = (f"Media already exists or missing information!", "warning")
     except Exception as e:
-        st.session_state["message"] = (f"Error: {e}", "error")
+        st.session_state["message"] = (f"Database error: {e}", "error")
     finally:
         conn.close()
 
 
 def get_media(media_type=None, status=None, order=None):
-
+    """Fetch media from the database based on filters."""
     conn = get_conn()
     cursor = conn.cursor()
 
     try:
         query = "SELECT * FROM media"
+        conditions = []
         params = []
 
-        conditions = []
         if media_type:
-            conditions.append(f"type = '{media_type}'")
+            conditions.append(f"type = ?")
+            params.append(media_type)
         if status:
-            conditions.append(f"status = '{status}'")
-
+            conditions.append(f"status = ?")
+            params.append(status)
         if conditions:
             query += " WHERE " + " AND ".join(conditions)
+
         if order:
             query += f" ORDER BY {order}"
 
