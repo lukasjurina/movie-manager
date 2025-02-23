@@ -46,7 +46,6 @@ The app uses an SQLite database to store media entries. The `media` table has th
 | id           | INTEGER  | Primary key, autoincrement         |
 | title        | TEXT     | Title of the movie/show            |
 | year         | INTEGER  | Release year of the movie/show     |
-| genre        | TEXT     | Genre of the movie/show            |
 | status       | TEXT     | Status (To Watch, Watched, Watching)|
 | date_watched | TEXT     | Date when the media was watched    |
 | rating       | INTEGER  | Rating of the media                |
