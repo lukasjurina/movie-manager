@@ -51,13 +51,12 @@ def list_media(parent_key, status, order):
                 with st.expander(f"Options"):
                     col_edit, col_delete = st.columns([1, 1])
 
-                    # Tlačítka pro úpravu a smazání
                     with col_edit:
                         if st.button("Edit", key=f"edit_{parent_key}{i}"):
-                            # Kód pro úpravu záznamu
+                            #TODO add functionality of edit, probably modification of add
                             pass
 
                     with col_delete:
                         if st.button("Delete", key=f"delete_{parent_key}{i}"):
-                            # Kód pro smazání záznamu
+                            #TODO add functionality of delete, need to create in db\database.py
                             pass
