@@ -1,6 +1,6 @@
 import streamlit as st # type: ignore
 from functions.add_media import add_media
-from functions.list_media import filter_media, order_media
+from functions.list_media import filter_media, order_media, list_media
 from db.database import db_init
 
 db_init()
@@ -21,35 +21,44 @@ st.title("Movies and Shows Manager")
 movies, shows = st.tabs(["Movies", "Shows"])
 
 with movies:
-    key = "movies"
+    key = "Movie"
+    status = None
+    order = None
 
-    st.header("Movies")
+    st.header(f"{key}s")
 
-    col1, col2 = st.columns([16, 1], vertical_alignment = "center")
+    col1, col2 = st.columns([15.8, 1], vertical_alignment = "center")
 
     with col1:
-        filter_media(key)
+        status = filter_media(key)
 
     with col2:
-        add_media("Movie")
+        add_media(key)
 
     st.divider()
 
-    order_media(key)
+    order = order_media(key)
+
+    list_media(key, status, order)
 
 
 with shows:
-    key = "shows"
+    key = "Show"
+    status = None
+    order = None
 
-    st.header("Shows")
+    st.header(f"{key}s")
 
-    col1, col2 = st.columns([16, 1], vertical_alignment = "center")
+    col1, col2 = st.columns([15.8, 1], vertical_alignment = "center")
     
     with col1:
-        filter_media(key)
+        status = filter_media(key)
     with col2:
-        add_media("Show")
+        add_media(key)
 
     st.divider()
 
-    order_media(key)
+    order = order_media(key)
+
+
+    list_media(key, status, order)
