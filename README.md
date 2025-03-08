@@ -6,7 +6,7 @@ This is a simple **Streamlit** web application for managing and tracking media s
 ## Features
 - **Add Media**: Users can add movies and TV shows with information like title, year, status, and rating.
 - **View Media**: The app displays media entries in a grid, grouped by columns.
-- **Persistent Storage**: The app uses an SQLite database to store media entries, ensuring data persistence across sessions.
+- **Persistent Storage**: The app uses an SQLite database to store media entries.
 
 ## Technologies Used
 - **Streamlit**: For the user interface and application logic.
