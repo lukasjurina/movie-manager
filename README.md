@@ -6,7 +6,6 @@ This is a simple **Streamlit** web application for managing and tracking media s
 ## Features
 - **Add Media**: Users can add movies and TV shows with information like title, year, status, and rating.
 - **View Media**: The app displays media entries in a grid, grouped by columns.
-- **TBD** **Media Update and Delete**: Each media entry can be edited or deleted using buttons provided next to the entry.
 - **Persistent Storage**: The app uses an SQLite database to store media entries, ensuring data persistence across sessions.
 
 ## Technologies Used
@@ -36,20 +35,6 @@ This is a simple **Streamlit** web application for managing and tracking media s
    ```
 
 2. Open the provided link (usually `http://localhost:8501`) in your web browser to start interacting with the app.
-
-## Database Structure
-
-The app uses an SQLite database to store media entries. The `media` table has the following structure:
-
-| Column       | Type     | Description                        |
-|--------------|----------|------------------------------------|
-| id           | INTEGER  | Primary key, autoincrement         |
-| title        | TEXT     | Title of the movie/show            |
-| year         | INTEGER  | Release year of the movie/show     |
-| status       | TEXT     | Status (To Watch, Watched, Watching)|
-| date_watched | TEXT     | Date when the media was watched    |
-| rating       | INTEGER  | Rating of the media                |
-| type         | TEXT     | Type of media (Movie or Show)      |
 
 ## License
 
